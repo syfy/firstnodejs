@@ -1,0 +1,14 @@
+<html>
+  <form method="post" action="/m/<%= json._id %>">
+    <textarea name="id" placeholder="id" value="<%= json._id %>" hidden="true" ></textarea>
+ name   <textarea name="name" placeholder="name" ><%= json._name %></textarea>
+    <br>
+	   <br>
+ quantiy   <textarea name="qty" placeholder="quantity" ><%= json._qty %></textarea>
+    <br>
+	   <br>
+  amount  <textarea name="amount" placeholder="amount" ><%= json._amount %></textarea>
+    <br>
+	
+    <input type=submit value="MAKE IT SO">
+  </form>

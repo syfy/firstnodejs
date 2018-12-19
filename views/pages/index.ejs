@@ -1,0 +1,68 @@
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+    <% include ../partials/head %>
+</head>
+<body class="container">
+
+<header>
+    <% include ../partials/header %>
+</header>
+
+<main>
+    <div class="jumbotron">
+        <h1>Cread Read Edit Delete Demo</h1>
+        <p>Welcome to templating using EJS</p>
+    </div>
+</main>
+<h2>Loop</h2>
+<a href="/new">New</a>
+<table>
+
+	 <tr>
+    <th>Id</th>
+    <th>name</th>
+    <th>amount</th>
+	    <th>Quantity</th>
+		    <th>Action</th>
+	    <th>Action</th>
+  </tr>
+  
+    <% inventories.forEach(function(drink) { %>
+		  <tr>
+		  	  <td> <%= drink._id %> </td>
+      <td><%= drink._name %> </td>
+
+	  <td> <%= drink._amount %> </td>
+	  <td> <%= drink._qty %> </td>
+	  <td><a href="http://127.0.0.1:3001/m/<%= drink._id %>">Modify</a>  </td>
+	  <td><a href="http://127.0.0.1:3001/del/<%= drink._id %>">Delete</a> </td>
+			</tr>
+  <% }); %>
+
+</table>
+<footer>
+    <% include ../partials/footer %>
+</footer>
+
+</body>
+</html>
