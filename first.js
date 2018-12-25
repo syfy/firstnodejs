@@ -1,4 +1,7 @@
-
+var sync = require('synchronize');
+var fiber = sync.fiber;
+var await = sync.await;
+var defer = sync.defer;
 var mysql = require('mysql')
 var connection = mysql.createConnection({
   host     : '127.0.0.1',
@@ -55,31 +58,14 @@ const port = 3000
 //connection.connect()
 
 app.use(bodyParser.urlencoded({ extended: false }));
-	var array = [];
+
 //connection.end()
-
-connection.query('SELECT * FROM items', function (err, rows, fields) {
-		
-  if (err) throw err
-
-
-
-  
-		  rows.forEach(function(element) {
-		  console.log(element.name);
-	 var t = new Item();
-		 t.qty=element.qty;
-		 t.name = element.name;
-		 t.id = element.id;
-		 		 t.amount= element.amount;
-		 array.push(t);
-		 
-		});
+	var array = [];
+	 getAllItemsQuery();
 	
-})
-app.get('/', function(req, res) {
+function getAllItemsQuery() { 
 
-	connection.query('SELECT * FROM items', function (err, rows, fields) {
+ connection.query('SELECT * FROM items', function (err, rows, fields) {
 		array = [];
   if (err) throw err
 
@@ -99,8 +85,17 @@ app.get('/', function(req, res) {
 	
 })
 
+} 
+
+app.get('/', function(req, res) {
+
+
+			getAllItemsQuery();
+
+
+
 res.send(array);
-array = [];
+
 });
 
 
